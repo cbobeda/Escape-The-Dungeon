@@ -1,0 +1,7 @@
+﻿  Escape The Dungeon.cpp
+C:\Users\cleme\source\repos\Escape The Dungeon\Escape The Dungeon\Escape The Dungeon.cpp(19,36): warning C4305: 'argument' : troncation de '__int64' à 'T'
+C:\Users\cleme\source\repos\Escape The Dungeon\Escape The Dungeon\Escape The Dungeon.cpp(19,36): warning C4305:         with
+C:\Users\cleme\source\repos\Escape The Dungeon\Escape The Dungeon\Escape The Dungeon.cpp(19,36): warning C4305:         [
+C:\Users\cleme\source\repos\Escape The Dungeon\Escape The Dungeon\Escape The Dungeon.cpp(19,36): warning C4305:             T=float
+C:\Users\cleme\source\repos\Escape The Dungeon\Escape The Dungeon\Escape The Dungeon.cpp(19,36): warning C4305:         ]
+  Escape The Dungeon.vcxproj -> C:\Users\cleme\source\repos\Escape The Dungeon\x64\Debug\Escape The Dungeon.exe
