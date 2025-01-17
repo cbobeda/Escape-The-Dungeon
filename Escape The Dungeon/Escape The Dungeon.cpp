@@ -12,7 +12,7 @@ int main()
     sf::Clock clock;
     while (window.isOpen())
     {
-        p.update(1);
+        p.update(1, &event);
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
