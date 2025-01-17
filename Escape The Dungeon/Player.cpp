@@ -31,6 +31,10 @@ void Player::update(float deltaTime, sf::Event* event)
         std::cout << speed << std::endl;
         speed = 10;
     }
+    if (endurance <= 0)
+    {
+        speed = 10;
+    }
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && endurance <= 100)
     {
         endurance += 1;
