@@ -1,8 +1,10 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include "Player.h"
+#include "ChaseEnnemy.h"
 
 Player p(50,50,"pp.png");
+ChaseEnnemy chaseEnnemy(50,50,"pp.png");
 
 int main()
 {
@@ -19,6 +21,7 @@ int main()
         }
         window.clear();
         p.draw(&window);
+        chaseEnnemy.draw(&window);
         window.display();
     }
 

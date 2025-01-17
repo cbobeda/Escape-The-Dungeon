@@ -1,5 +1,4 @@
 ﻿#include <SFML/Graphics.hpp>
-
 #include "Ennemy.h"
 
 class ChaseEnnemy : public Ennemy

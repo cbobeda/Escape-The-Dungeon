@@ -7,7 +7,7 @@ private:
 public:
     
     Ennemy(){};
-    void update(float deltaTime,sf::Event* event)override;
-    void draw(sf::RenderWindow* window) override;
+    void update(float deltaTime,sf::Event* event) override;
+    virtual void draw(sf::RenderWindow* window) override;
     ~Ennemy(){};
 };
