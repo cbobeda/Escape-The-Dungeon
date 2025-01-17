@@ -137,11 +137,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChaseEnnemy.cpp" />
+    <ClCompile Include="Ennemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Escape The Dungeon.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChaseEnnemy.h" />
+    <ClInclude Include="Ennemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

@@ -7,7 +7,6 @@ Player p(50,50,"pp.png");
 int main()
 {
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Escape The Dungeon");
-    window.setFramerateLimit(60);
     sf::Event event;
     sf::Clock clock;
     while (window.isOpen())

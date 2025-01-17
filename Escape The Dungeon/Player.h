@@ -6,7 +6,7 @@ class Player : public Entity
 private:
     sf::Texture texture;
     sf::Sprite sprite;
-    int speed = 10;
+    int speed = 5;
     int life = 5;
     int maxLife = 5;
     float endurance = 100;
