@@ -1,12 +1,10 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
 #include "Ennemy.h"
-#include "Player.h"
 
 class ChaseEnnemy : public Ennemy
 {
     private:
-    sf::Texture texture;
     sf::CircleShape detection;
     int speed = 5;
     int life = 5;

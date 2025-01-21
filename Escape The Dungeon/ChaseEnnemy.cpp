@@ -1,5 +1,7 @@
 ﻿#include "ChaseEnnemy.h"
 
+#include "Player.h"
+
 
 extern Player p;
 void ChaseEnnemy::draw(sf::RenderWindow* window)

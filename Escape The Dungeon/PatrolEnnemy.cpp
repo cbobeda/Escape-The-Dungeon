@@ -1,12 +1,12 @@
 ﻿#include "PatrolEnnemy.h"
 #include <iostream>
 #include <cmath> // Pour std::abs
-
 void PatrolEnnemy::update(float deltaTime, sf::Event* event)
 {
     // Vérifier que l'indice i est valide
     if (i >= 4) {
         std::cerr << "Erreur : Indice 'i' dépasse la taille de 'position'.\n";
+        i = 0;
         return;
     }
 
