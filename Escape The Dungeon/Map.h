@@ -7,5 +7,5 @@ class Map : public Entity
 public:
     void update(float deltaTime,sf::Event* event) override;
     void draw(sf::RenderWindow* window) override;
-    virtual void interact(Player& player) = 0;
+    virtual void interact(Player& player,sf::Event* event) = 0;
 };

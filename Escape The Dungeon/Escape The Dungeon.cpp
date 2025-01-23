@@ -35,24 +35,27 @@ int main()
         std::cout << line << std::endl;
 
         for (int x = 0; x < line.size(); x++) { // Parcourt chaque caractère de la ligne
-            if (line[x] == '#') {
+            if (line[x] == '#')
+            {
                 maps.push_back(new door(x * 40, i * 40, "wall.png"));
+            }
+            else if (line[x] == '.')
+            {
+                maps.push_back(new door(x * 40, i * 40, "wall.png"));
+            }
+            else if (line[x] == 'P')
+            {
+                objects.push_back(new Potion(x * 40,i * 40,"speedpot.png"));
+            }
+            else if (line[x] == 'K')
+            {
+                objects.push_back(new Key(x * 40,i * 40,"cle.png"));
             }
         }
 
         i++; // Incrémente la ligne verticale
     }
-    for (unsigned int i = 0; i < 10; i++)
-    {
-        if (rand() % 2 == 0)
-        {
-            objects.push_back(new Potion(rand()%1000,rand()%1000,"speedpot.png"));
-        }
-        else
-        {
-            objects.push_back(new Key(rand()%1000,rand()%1000,"cle.png"));
-        }
-    }
+    
     while (window.isOpen())
     {
         if (!isDead)
@@ -80,7 +83,7 @@ int main()
             }
             for (auto& tiles : maps)
             {
-                tiles->interact(p);
+                tiles->interact(p, &event);
             }
             while (window.pollEvent(event))
             {

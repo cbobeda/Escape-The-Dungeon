@@ -5,19 +5,19 @@
 void Player::update(float deltaTime, sf::Event* event)
 {
     
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && canMoveRight)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         sprite.move(speed, 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && canMoveLeft)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         sprite.move( -speed , 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && canMoveUp)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         sprite.move( 0 , -speed);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && canMoveDown)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         sprite.move(  0, speed);
     }
