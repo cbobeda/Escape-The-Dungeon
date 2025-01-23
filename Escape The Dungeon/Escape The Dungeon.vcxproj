@@ -148,6 +148,8 @@
     <ClCompile Include="PatrolEnnemy.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="potion.cpp" />
+    <ClCompile Include="Sol.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChaseEnnemy.h" />
@@ -160,6 +162,8 @@
     <ClInclude Include="PatrolEnnemy.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="potion.h" />
+    <ClInclude Include="Sol.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,6 +9,8 @@
 #include "potion.h"
 #include "Key.h"
 #include "door.h"
+#include "Wall.h"
+#include "Sol.h"
 #include <vector>
 
 
@@ -25,7 +27,7 @@ std::vector<Map*> maps;
 int main()
 {
     srand(time(NULL));
-    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Escape The Dungeon");
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Escape The Dungeon", sf::Style::Fullscreen);
     sf::Event event;
     sf::Clock clock;
     std::ifstream fichier("map.txt", std::ios::in);
@@ -35,21 +37,43 @@ int main()
         std::cout << line << std::endl;
 
         for (int x = 0; x < line.size(); x++) { // Parcourt chaque caractère de la ligne
-            if (line[x] == '#')
+            if (line[x] == ' ')
             {
-                maps.push_back(new door(x * 40, i * 40, "wall.png"));
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
+            }
+            else if (line[x] == '#')
+            {
+                maps.push_back(new Wall(x * 40, i * 40, "wall.png"));
             }
             else if (line[x] == '.')
             {
-                maps.push_back(new door(x * 40, i * 40, "wall.png"));
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
+                maps.push_back(new door(x * 40, i * 40, "Door.png"));
             }
             else if (line[x] == 'P')
             {
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
                 objects.push_back(new Potion(x * 40,i * 40,"speedpot.png"));
             }
             else if (line[x] == 'K')
             {
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
                 objects.push_back(new Key(x * 40,i * 40,"cle.png"));
+            }
+            else if (line[x] == 'C')
+            {
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
+                ennemies.push_back(new ChaseEnnemy(x * 40,i * 40,"follow.png"));
+            }
+            else if (line[x] == 'G')
+            {
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
+                ennemies.push_back(new PatrolEnnemy(x * 40,i * 40,"patrol.png"));
+            }
+            else if (line[x] == 'J')
+            {
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
+                p.sprite.setPosition(x * 40,i * 40);
             }
         }
 
@@ -66,16 +90,27 @@ int main()
                 ennemy->update(1,&event);
             }
             std::vector<Object*> toDelete;
+            std::vector<Map*> toDeleteMap;
 
             for (auto& obj : objects)
             {
                 if (obj->shouldBeDeleted)
                     toDelete.push_back(obj);
             }
+            for (auto& doors : maps)
+            {
+                if (doors->shouldBeDeleted)
+                    toDeleteMap.push_back(doors);
+            }
             for (auto* obj : toDelete)
             {
                 objects.erase(std::remove(objects.begin(), objects.end(), obj), objects.end());
                 delete obj;
+            }
+            for (auto* doors : toDeleteMap)
+            {
+                maps.erase(std::remove(maps.begin(), maps.end(), doors), maps.end());
+                delete doors;
             }
             for (auto& obj : objects)
             {
@@ -100,6 +135,10 @@ int main()
             }
             
             window.clear();
+            for (auto& tile : maps)
+            {
+                tile->draw(&window);
+            }
             p.draw(&window);
             for (auto& ennemy : ennemies)
             {
@@ -109,10 +148,7 @@ int main()
             {
                 obj->draw(&window);
             }
-            for (auto& tile : maps)
-            {
-                tile->draw(&window);
-            }
+            
         }
         else
         {
@@ -137,7 +173,10 @@ int main()
     {
         delete obj;
     }
-
+    for (auto& tiles : maps)
+    {
+        delete tiles;
+    }
     return 0;
 }
 
