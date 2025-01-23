@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Object.h"
 #include "Entity.h"
 
 class Map : public Entity

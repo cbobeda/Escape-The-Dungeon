@@ -9,8 +9,13 @@ void door::interact(Player& player)
 {
     if (sprite.getGlobalBounds().intersects(player.sprite.getGlobalBounds()))
     {
-        std::cout << "door interact" << std::endl;
-        shouldBeDeleted = true;
+        if (player.key > 0)
+        {
+            std::cout << "door interact" << std::endl;
+            player.key -= 1;
+            shouldBeDeleted = true;
+        }
+        
     }
 }
 
