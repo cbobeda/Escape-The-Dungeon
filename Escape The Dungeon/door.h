@@ -3,6 +3,7 @@
 class door : public Map
 {
 public:
+    int type = 1;
     door(int x, int y, sf::String chemin){texture.loadFromFile(chemin); sprite.setTexture(texture); sprite.setPosition(x, y);sprite.setScale(0.1,0.1);};
     void update(float deltaTime, sf::Event* event) override;
     void draw(sf::RenderWindow* window) override;

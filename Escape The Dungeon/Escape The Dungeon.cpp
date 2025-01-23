@@ -29,15 +29,14 @@ int main()
     sf::Event event;
     sf::Clock clock;
     std::ifstream fichier("map.txt", std::ios::in);
-    door d = door(500,500,"pp.png");
-    ennemies.push_back(new ChaseEnnemy(50,50,"follow.png"));
-    ennemies.push_back(new PatrolEnnemy(300,300,"patrol.png"));
+    //ennemies.push_back(new ChaseEnnemy(50,50,"follow.png"));
+    //ennemies.push_back(new PatrolEnnemy(300,300,"patrol.png"));
     while (std::getline(fichier, line)) {
         std::cout << line << std::endl;
 
         for (int x = 0; x < line.size(); x++) { // Parcourt chaque caractère de la ligne
             if (line[x] == '#') {
-                maps.push_back(new door(x * 80, i * 80, "pp.png"));
+                maps.push_back(new door(x * 40, i * 40, "wall.png"));
             }
         }
 
@@ -79,8 +78,10 @@ int main()
             {
                 obj->interact(p);
             }
-
-            d.interact(p);
+            for (auto& tiles : maps)
+            {
+                tiles->interact(p);
+            }
             while (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed)
@@ -94,6 +95,7 @@ int main()
                     window.close();
                 }
             }
+            
             window.clear();
             p.draw(&window);
             for (auto& ennemy : ennemies)
