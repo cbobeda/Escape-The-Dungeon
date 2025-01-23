@@ -32,15 +32,16 @@ int main()
     door d = door(500,500,"pp.png");
     ennemies.push_back(new ChaseEnnemy(50,50,"follow.png"));
     ennemies.push_back(new PatrolEnnemy(300,300,"patrol.png"));
-    getline(fichier,line);
-    std::cout << line << std::endl;
-    for (auto character : line)
-    {
-        if (character == '#')
-        {
-            maps.push_back(new door(i * 40,0,"pp.png"));
-            i++;
+    while (std::getline(fichier, line)) {
+        std::cout << line << std::endl;
+
+        for (int x = 0; x < line.size(); x++) { // Parcourt chaque caractère de la ligne
+            if (line[x] == '#') {
+                maps.push_back(new door(x * 80, i * 80, "pp.png"));
+            }
         }
+
+        i++; // Incrémente la ligne verticale
     }
     for (unsigned int i = 0; i < 10; i++)
     {
