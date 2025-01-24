@@ -7,15 +7,15 @@ void door::update(float deltaTime, sf::Event* event)
 
 void door::interact(Player& player, sf::Event* event)
 {
-    // Vérifier si le joueur entre en collision avec la porte
+    
     if (sprite.getGlobalBounds().intersects(player.sprite.getGlobalBounds()))
     {
-        // Vérifier si le joueur a une clé pour interagir avec la porte
         if (player.key > 0)
         {
             std::cout << "door interact" << std::endl;
             player.key -= 1;
-            shouldBeDeleted = true; // Marquer la porte pour suppression
+            player.iswinning = true;
+            shouldBeDeleted = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {

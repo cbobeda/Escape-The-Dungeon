@@ -29,14 +29,24 @@ int main()
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Escape The Dungeon", sf::Style::Fullscreen);
     sf::Event event;
-    sf::Clock clock;
+    sf::Font font;
+    font.loadFromFile("POWER_UP.otf");
+    sf::Text text;
+    text.setFont(font);
+    text.setString("GAME OVER");
+    text.setCharacterSize(40);
+    text.setFillColor(sf::Color::White);
+    text.setOutlineColor(sf::Color::Black);
+    text.setOutlineThickness(5);
+    text.setOrigin(262, 26.5);
+    text.setPosition(sf::Vector2f(960, 200));
+    text.setScale(1.5, 1.5);
     std::ifstream fichier("map.txt", std::ios::in);
-    //ennemies.push_back(new ChaseEnnemy(50,50,"follow.png"));
-    //ennemies.push_back(new PatrolEnnemy(300,300,"patrol.png"));
     while (std::getline(fichier, line)) {
         std::cout << line << std::endl;
 
-        for (int x = 0; x < line.size(); x++) { // Parcourt chaque caractère de la ligne
+        for (int x = 0; x < line.size(); x++)
+        {
             if (line[x] == ' ')
             {
                 maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
@@ -82,7 +92,7 @@ int main()
     
     while (window.isOpen())
     {
-        if (!isDead)
+        if (!isDead && !p.iswinning)
         {
             p.update(1, &event);
             for (auto& ennemy : ennemies)
@@ -130,7 +140,7 @@ int main()
             {
                 if (p.sprite.getGlobalBounds().intersects(ennemy->sprite.getGlobalBounds()))
                 {
-                    window.close();
+                    isDead = true;
                 }
             }
             
@@ -150,18 +160,28 @@ int main()
             }
             
         }
-        else
+        else if (isDead)
         {
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            
+            }
             window.clear();
-            for (auto& ennemy : ennemies)
+            window.draw(text);
+        }
+        else if (p.iswinning)
+        {
+            while (window.pollEvent(event))
             {
-                ennemy->draw(&window);
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            
             }
-            for (auto& obj : objects)
-            {
-                obj->draw(&window);
-            }
-            isDead = false;
+            window.clear();
+            text.setString("You Win!");
+            window.draw(text);
         }
         window.display();
     }
