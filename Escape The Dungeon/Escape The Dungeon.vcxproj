@@ -144,6 +144,7 @@
     <ClCompile Include="Escape The Dungeon.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Nourriture.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PatrolEnnemy.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Nourriture.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PatrolEnnemy.h" />
     <ClInclude Include="Player.h" />

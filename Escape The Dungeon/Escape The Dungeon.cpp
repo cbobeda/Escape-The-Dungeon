@@ -11,7 +11,9 @@
 #include "door.h"
 #include "Wall.h"
 #include "Sol.h"
+#include "Nourriture.h"
 #include <vector>
+
 
 
 bool isDead = false;
@@ -75,6 +77,11 @@ int main()
             {
                 maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
                 objects.push_back(new Key(x * 40,i * 40,"cle.png"));
+            }
+            else if (line[x] == 'S')
+            {
+                maps.push_back(new Sol(x * 40, i * 40, "Sol.png"));
+                objects.push_back(new Nourriture(x * 40, i * 40, "meat.png"));
             }
             else if (line[x] == 'C')
             {
