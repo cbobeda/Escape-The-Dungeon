@@ -27,19 +27,25 @@ std::vector<Map*> maps;
 int main()
 {
     srand(time(NULL));
-    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Escape The Dungeon", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode(1920,1080), "Escape The Dungeon", sf::Style::Fullscreen);
     sf::Event event;
+    sf::Clock clock;
     sf::Font font;
     font.loadFromFile("POWER_UP.otf");
+    sf::Texture texture;
+    texture.loadFromFile("Loading.png");
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+    window.draw(sprite);
     sf::Text text;
     text.setFont(font);
-    text.setString("GAME OVER");
+    text.setString("Place holder");
     text.setCharacterSize(40);
     text.setFillColor(sf::Color::White);
     text.setOutlineColor(sf::Color::Black);
     text.setOutlineThickness(5);
-    text.setOrigin(262, 26.5);
-    text.setPosition(sf::Vector2f(960, 200));
+    text.setOrigin(text.getLocalBounds().width / 2.0f,text.getLocalBounds().height / 2.0f);
+    text.setPosition(window.getSize().x / 2.0f, 30);
     text.setScale(1.5, 1.5);
     std::ifstream fichier("map.txt", std::ios::in);
     while (std::getline(fichier, line)) {
@@ -94,6 +100,10 @@ int main()
     {
         if (!isDead && !p.iswinning)
         {
+            if (60 - clock.getElapsedTime().asSeconds() <= 0)
+            {
+                isDead = true;
+            }
             p.update(1, &event);
             for (auto& ennemy : ennemies)
             {
@@ -158,6 +168,8 @@ int main()
             {
                 obj->draw(&window);
             }
+            text.setString(std::to_string(60-(int)clock.getElapsedTime().asSeconds()));
+            window.draw(text);
             
         }
         else if (isDead)
@@ -169,6 +181,9 @@ int main()
             
             }
             window.clear();
+            window.draw(sprite);
+            text.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
+            text.setString("Game Over");
             window.draw(text);
         }
         else if (p.iswinning)
@@ -180,6 +195,8 @@ int main()
             
             }
             window.clear();
+            window.draw(sprite);
+            text.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
             text.setString("You Win!");
             window.draw(text);
         }

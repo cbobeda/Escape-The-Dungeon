@@ -7,6 +7,8 @@
 extern Player p;
 extern std::vector<Map*> maps;
 
+sf::Clock cloc;
+
 void ChaseEnnemy::draw(sf::RenderWindow* window)
 {
     window->draw(sprite);
@@ -23,6 +25,16 @@ sf::Vector2f normalize(const sf::Vector2f& vector)
 
 void ChaseEnnemy::update(float deltaTime, sf::Event* event)
 {
+    if (sprite.getColor().a == 50 && cloc.getElapsedTime().asSeconds() > 0.5)
+    {
+        sprite.setColor(sf::Color(255,255,255,255));
+        cloc.restart();
+    }
+    else if (cloc.getElapsedTime().asSeconds() > 0.5)
+    {
+        sprite.setColor(sf::Color(255,255,255,50));
+        cloc.restart();
+    }
     sf::Vector2f direction = normalize(p.sprite.getPosition() - sprite.getPosition());
     
     sf::Vector2f initialPosition = sprite.getPosition();
