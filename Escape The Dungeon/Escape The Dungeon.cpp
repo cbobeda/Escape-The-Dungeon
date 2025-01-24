@@ -87,7 +87,7 @@ int main()
             }
         }
 
-        i++; // Incrémente la ligne verticale
+        i++;
     }
     
     while (window.isOpen())
